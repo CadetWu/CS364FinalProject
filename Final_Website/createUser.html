@@ -15,12 +15,13 @@
      <!-- This is where the Boot strap code ends-->
 
     <title>ONE STOP SHOP - Create User</title>
-    <link rel="stylesheet" href = "Assets/createUser.css" title = "Default Style"/>
+    <link rel="stylesheet" href="Assets/login.css" title="Default Style"/>
   </head>
 
   <body>
     <h1 class="jumbotron">Create Account for the CS-14 One-Stop Shop</h1>
-    <form action="submit.html" method="GET">
+     <!-- POST method in order to keep password from being exposed in URL-->
+    <form action="GPUser.html" method="POST">
         <label for="name">Student ID:</label>
         <input type="text" id="name" name="name" required>
         <br><br>
@@ -40,5 +41,10 @@
             <button type="submit" class="btn btn-primary">Login</button>
         </form>
     </div>
+    <br><br>
+    <div>
+      <a class="btn btn-secondary" href="login.html">Back to Home</a>
+    </div>
+    
 </body>
 </html>

@@ -2,13 +2,18 @@
 {
     text-align: center;
     font-weight: bold;
-    background-color: greenyellow;
+    background-color: rgb(99, 180, 67);
     color:black;
 }
 
 body {
     text-align: center;
-    background-color: blueviolet;
+    background-color: rgb(212, 209, 209);
+}
+
+h2 {
+    font-weight: bold;
+    color: black;
 }
 
 label {
