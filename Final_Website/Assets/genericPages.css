@@ -1,0 +1,16 @@
+.jumbotron
+{
+    text-align: center;
+    font-weight: bold;
+    background-color: greenyellow;
+    color:black;
+}
+
+body {
+    text-align: center;
+    background-color: blueviolet;
+}
+
+label {
+    font-weight: bold;
+}
