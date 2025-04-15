@@ -14,13 +14,34 @@
      crossorigin="anonymous"></script>
      <!-- This is where the Boot strap code ends-->
       
-    <title>ONE STOP SHOP - User Add Data</title>
+    <title>OSS - User Add Data</title>
     <link rel="stylesheet" href = "Assets/login.css" title = "Default Style"/>
   </head>
   <body>
     <h1 class="jumbotron">CS-14 One Stop Shop</h1>
     <h2>Update Your Information Here</h2>
-    <h3>*Add some sort of dropdown menu to change certain information*</h3>
+    <br>
+    <div>
+      <form action="GPUser.html" method="POST">
+        <label>Information to Change:</label>
+        <select name="info" placeholder="Example: Phone Number">
+          <option value="student_id">Student ID</option>
+          <option value="name">Name</option>
+          <option value="rank">Rank</option>
+          <option value="class_year">Class Year</option>
+          <option value="phone_num">Phone Number</option>
+          <option value="email_addr">Email Address</option>
+          <option value="room_num">Room Number</option>
+          <option value="birthday">Birthday</option>
+        </select>
+        <br>
+        <label>New Information:</label>
+        <input type="text" id="new_info" name="new_info" required>
+        <br>
+        <button class="btn btn-primary" type="submit">Update Information</button>
+      </form>
+    </div>
+
 
 
 
