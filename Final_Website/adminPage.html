@@ -18,8 +18,15 @@
     <link rel="stylesheet" href = "Assets/login.css" title = "Default Style"/>
   </head>
   <body>
-    <form action="GPUser.html" method="POST">
-      <label for="student_id">Student ID:</label>
+    <h1 class="jumbotron">Admin CS-14 Member Search</h1>
+    <form action="GPAdmin.html" method="POST">
+        <label>Select a Way Search:</label>
+        <select name="info" placeholder="Example: Name">
+          <option value="student_id">Student ID</option>
+          <option value="name">Name</option>
+        </select>
       <input type="text" id="student_id" name="student_id" required>
+      <button class="btn btn-primary" type="submit">Submit</button>
       <br><br>
+    </form>
   </body>
