@@ -1,3 +1,5 @@
+<!--Documentation: None-->
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -15,5 +17,20 @@
      <!-- This is where the Boot strap code ends-->
 
     <title>ONE STOP SHOP - Admin</title>
-    <link rel="stylesheet" href = "Assets/adminPage.css" title = "Default Style"/>
+    <link rel="stylesheet" href = "Assets/login.css" title = "Default Style"/>
   </head>
+  <body>
+    <h1 class="jumbotron">Admin CS-14 Member Search</h1>
+    <form action="GPAdmin.html" method="POST">
+
+        <!-- Implemented a dropdown-->
+        <label>Select a Way Search:</label>
+        <select name="info" placeholder="Example: Name">
+          <option value="student_id">Student ID</option>
+          <option value="name">Name</option>
+        </select>
+      <input type="text" id="student_id" name="student_id" required>
+      <button class="btn btn-primary" type="submit">Submit</button>
+      <br><br>
+    </form>
+  </body>
