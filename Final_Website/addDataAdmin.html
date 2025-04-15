@@ -15,5 +15,53 @@
      <!-- This is where the Boot strap code ends-->
       
     <title>ONE STOP SHOP - Admin Add Data</title>
-    <link rel="stylesheet" href = "Assets/addData.css" title = "Default Style"/>
+    <link rel="stylesheet" href = "Assets/login.css" title = "Default Style"/>
   </head>
+  <body>
+    <h1 class="jumbotron">CS-14 One Stop Shop</h1>
+    <h2>Update Information Here</h2>
+    <br>
+    <div>
+      <!-- Dropdown menu to search the name of the person whose information to change -->
+      <form action="GPAdmin.html" method="POST">
+        <label>Information to Change:</label>
+        <select name="student" placeholder="Name:">
+          <option value="name">This dropdown will contain all names *to implement later*</option>
+        </select>
+        <br>
+        <!-- Dropdown menu for the different information categories to change -->
+        <label>Information to Change:</label>
+        <select name="info" placeholder="Example: Phone Number">
+          <option value="lunch_table">Lunch Table #</option>
+          <option value="next_cq_date">Next CQ Shift Date</option>
+          <option value="next_cq_time">Next CQ Shift Time</option>
+          <option value="cq_group">CQ Group [A, B, C]</option>
+          <option value="num_shifts_worked"># of Shifts Worked</option>
+          <option value="SAMI1">SAMI #1 Grade</option>
+          <option value="SAMI2">SAMI #2 Grade</option>
+          <option value="SAMI3">SAMI #3 Grade</option>
+          <option value="SAMI_fails"># of SAMI Failures</option>
+          <option value="PAI1">PAI #1 Grade</option>
+          <option value="PAI1">PAI #2 Grade</option>
+          <option value="PAI1">PAI #3 Grade</option>
+          <option value="PAI_fails"># of PAI Fails</option>
+          <option value="AMI1">AMI #1 Grade</option>
+          <option value="AMI2">AMI #2 Grade</option>
+          <option value="AMI3">AMI #3 Grade</option>
+          <option value="AMI4">AMI #4 Grade</option>
+          <option value="AMI5">AMI #5 Grade</option>
+          <option value="AMI6">AMI #6 Grade</option>
+          <option value="AMI7">AMI #7 Grade</option>
+          <option value="AMI_fails"># of AMI Fails</option>
+        </select>
+        <br>
+        <!-- Text box for inputting the new information -->
+        <label>New Information:</label>
+        <input type="text" id="new_info" name="new_info" required>
+        <br>
+        <button class="btn btn-primary" type="submit">Update Information</button>
+      </form>
+    </div>
+
+
+  </body>
