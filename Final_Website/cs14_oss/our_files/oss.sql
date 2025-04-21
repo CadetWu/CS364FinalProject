@@ -7,3 +7,6 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 select * from users;
+
+-- Insert Sample data
+INSERT INTO .... L22
