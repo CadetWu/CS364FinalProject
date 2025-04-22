@@ -6,7 +6,7 @@ async function login(event) {
 
     const formData = new FormData(document.getElementById("login-form"));
     const loginData = {
-        username: formData.get("username"),
+        username: formData.get("student_id"),
         password: formData.get("password")
     };
     console.log(loginData);

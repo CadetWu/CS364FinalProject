@@ -11,8 +11,7 @@ async function register(event) {
     const formData = new FormData(document.getElementById("register-form"));
 
     const userData = {
-        username: formData.get("username"),
-        email: formData.get("email"),
+        student_id: formData.get("student_id"),
         password: formData.get("password"),
         role: formData.get("role")
     };
@@ -34,7 +33,7 @@ async function register(event) {
             console.log(result);
             if(result.success == true){
                alert(`${result.message} for ${result.username}`);
-               window.location.href = "frontpage.html";
+               window.location.href = "GPAdmin.html";
             } else {
                alert(`${result.message}`);
             }
@@ -43,13 +42,13 @@ async function register(event) {
             console.log("response not OK");
             console.log(result);
             console.log("Failed to register:", response.statusText);
-            alert(result.error || "Registration failed. Please try again." || `for User: ${result.name}`);
+            alert(result.error || "Registration failed. Please try again.");
         }
 
     } catch (error) {
         console.error("... error in registration");
         console.error("Error during registration:", error);
         console.error(`jsonBody: ${jsonBody}`);
-        alert("An error occurred. Please try again.");
+        alert("Could not be registered. Please try again.");
     }
 }

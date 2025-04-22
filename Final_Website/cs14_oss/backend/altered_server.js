@@ -25,19 +25,18 @@ app.use(
 app.post("/register", async (req, res) => {
 
   console.log("server.js: register ");
-  const { username, email, password, role } = req.body;
+  const { student_id, password, role } = req.body;
 
-  console.log(`server.js: register username: ${username}`);
-  console.log(`server.js: register email: ${email}`);
+  console.log(`server.js: register student id: ${student_id}`);
   console.log(`server.js: register password: ${password}`);
   console.log(`server.js: register role: ${role}`);
 
   const salt = crypto.randomBytes(16).toString("hex");
   const hash = crypto.pbkdf2Sync(password, salt, 1000, 64, "sha512").toString("hex");
 
-  const query = 'INSERT INTO users (username, email, hash, salt, role) VALUES ($1, $2, $3, $4, $5) RETURNING id';
+  const query = 'INSERT INTO users (student_id, hash, salt, role) VALUES ($1, $2, $3, $4) RETURNING id';
 
-  const values = [username, email, hash, salt, role];
+  const values = [student_id, hash, salt, role];
   console.log("trying query with these values...");
   console.log(values);
 
@@ -45,7 +44,7 @@ app.post("/register", async (req, res) => {
     const result = await pool.query(query, values);
     console.log("user NOW registered ... going to respond");
     console.log(result);
-    res.json({ success: true, message: `${role} account created`, username: `${username}` }); 
+    res.json({ success: true, message: `${role} account created`, student_id: `${student_id}` }); 
   } catch (error) {
     console.log("in catch block of server.js/register");
     console.log(error);
@@ -57,7 +56,7 @@ app.post("/login", auth.login);
 
 app.get("/users", auth.ensureAdmin, async (req, res) => {
   console.log("in GET /users");
-  const result = await pool.query("SELECT username, email, role FROM users");
+  const result = await pool.query("SELECT student_id, role FROM users");
   console.log(`GET /users rows: ${result.rows}`);
   res.json(result.rows);
 });
