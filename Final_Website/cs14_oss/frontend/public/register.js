@@ -42,7 +42,7 @@ async function register(event) {
             console.log("response not OK");
             console.log(result);
             console.log("Failed to register:", response.statusText);
-            alert(result.error || "Registration failed. Please try again." || `for User: ${result.name}`);
+            alert(result.error || "Registration failed. Please try again.");
         }
 
     } catch (error) {
