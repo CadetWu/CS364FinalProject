@@ -23,6 +23,8 @@ and "btn" classes to stylize our buttons -->
     <!-- This is where the Boot strap code ends-->
         <!-- Link login.css stylesheet -->
     <link href="Assets/login.css" rel="stylesheet">
+    <!-- Link login.js file-->
+    <script defer src = "login.js"> </script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,7 +35,7 @@ and "btn" classes to stylize our buttons -->
     <h2>Login Required</h2>
     <br>
     <!-- POST method in order to keep password from being exposed in URL-->
-    <form action="GPUser.html" method="POST">
+    <form id="login-form" onsubmit="login(event)">
       <!-- Codes Includes Student ID Text box, PW Text Box, and login button-->
       <label for="student_id">Student ID:</label>
       <input type="text" id="student_id" name="student_id" required>
@@ -44,9 +46,9 @@ and "btn" classes to stylize our buttons -->
       <button class="btn btn-primary" type="submit">Login</button>
     </form>
       <!-- Since Login Admin Button goes to a different page, uses separate form-->
-    <form action="GPAdmin.html" method="POST">
+    <!--<form action="GPAdmin.html" method="POST" onsubmit="login(event)">
       <button class="btn btn-info" type="submit">Login Admin</button>
-    </form>
+    </form> -->
 
       <!-- Create User doesn't need Method POST so it is separate-->
     <a class="btn btn-secondary" href="createUser.html">Create User</a>

@@ -11,8 +11,7 @@ async function register(event) {
     const formData = new FormData(document.getElementById("register-form"));
 
     const userData = {
-        username: formData.get("username"),
-        email: formData.get("email"),
+        student_id: formData.get("student_id"),
         password: formData.get("password"),
         role: formData.get("role")
     };
@@ -34,7 +33,7 @@ async function register(event) {
             console.log(result);
             if(result.success == true){
                alert(`${result.message} for ${result.username}`);
-               window.location.href = "frontpage.html";
+               window.location.href = "login.html";
             } else {
                alert(`${result.message}`);
             }
