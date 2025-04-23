@@ -11,15 +11,15 @@ CREATE TABLE IF NOT EXISTS users (
 select * from users;
 
  --Code From P2
-CREATE TABLE UMD(
-    student_id INT;
-    class_year SMALLINT;
+CREATE TABLE UMD (
+    student_id VARCHAR(100) PRIMARY KEY,
+    class_year SMALLINT,
     --Abbreviations: C/MSgt
-    cadet_rank VARCHAR(12);
-    phone_num VARCHAR(16);
-    email_addr VARCHAR(50);
-    name VARCHAR(40);
-)
+    cadet_rank VARCHAR(12),
+    phone_num VARCHAR(16),
+    email_addr VARCHAR(50),
+    name VARCHAR(40)
+);
 
 CREATE TABLE rooming(
     room_num VARCHAR(5);
@@ -83,7 +83,7 @@ INSERT INTO "lunch_arrangement" VALUES(3000122112, 5);
 INSERT INTO "AMI_grades" VALUES(3000122112, 100, 100, 100, 100, 100, 100, 100, 0);
 INSERT INTO "PAI_grades" VALUES(3000122112, 100, 100, 100, 100, 100, 100, 100, 0);
 --Data for Jack West
-INSERT INTO "UMD" VALUES(3000126376, 2026, "C/MSgt", 7154032677, "c26jack.west@afacademy.af.edu", "Jack West");
+INSERT INTO UMD (student_id, class_year, cadet_rank, phone_num, email_addr, name) VALUES(3000126376, 2026, 'C/MSgt', 7154032677, 'c26jack.west@afacademy.af.edu', 'Jack West');
 INSERT INTO "rooming" VALUES("5G73",3000126376);
 INSERT INTO "SAMI_grades" VALUES(3000126376, 100, 100, 100);
 INSERT INTO "birthdays" VALUES(3000126376,'2003-11-10');
