@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS users (
 
 select * from users;
 
+
 --Code From P2
 CREATE TABLE UMD(
     student_id INT;
