@@ -1,0 +1,36 @@
+.jumbotron
+{
+    text-align: center;
+    font-weight: bold;
+    background-color: rgb(99, 180, 67);
+    color:black;
+}
+
+
+body {
+    text-align: center;
+    background-color: rgb(212, 209, 209);
+}
+
+h2 {
+    font-weight: bold;
+    color: black;
+}
+
+/* Used for Table Titles */
+h3 {
+    text-size-adjust: 1em;
+    text-align: center;
+    color: rgb(99, 180, 67);
+}
+
+h4 {
+    text-size-adjust: 1em;
+    text-align: center;
+    color: black;
+}
+
+label {
+    font-weight: bold;
+    font-size: larger;
+}
