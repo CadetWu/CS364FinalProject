@@ -61,6 +61,13 @@ app.get("/users", auth.ensureAdmin, async (req, res) => {
   console.log(`GET /users rows: ${result.rows}`);
   res.json(result.rows);
 });
+// For UMD table
+app.get("/umd", auth.ensureAdmin, async (req, res) => {
+  console.log("in GET /umd");
+  const result = await pool.query("SELECT student_id, class_year, cadet_rank, phone_num, email_addr, name FROM UMD");
+  console.log(`GET /umd rows: ${result.rows}`);
+  res.json(result.rows);
+});
 
 app.get("/logout", (req, res) => {
   req.session.destroy();

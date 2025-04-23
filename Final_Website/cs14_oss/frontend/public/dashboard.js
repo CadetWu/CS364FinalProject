@@ -7,7 +7,7 @@ async function fetchAlls() {
     const users = await response.json();
 
         // self added
-    const response1 = await fetch("/api/UMD", { credentials: "include" });
+    const response1 = await fetch("/api/umd", { credentials: "include" });
     const UMD = await response1.json();
 
     if (response.ok) {
@@ -27,9 +27,9 @@ async function fetchAlls() {
             userTable.appendChild(row);
         });
         //Pulls for UMD
-        UMD.forEach(any => {  
+        UMD.forEach(cadet => {  
             const rowUMD = document.createElement("tr");
-            rowUMD.innerHTML = `<td>${student_id}</td><td>${class_year}</td><td>${cadet_rank}</td><td>${phone_num}</td><td>${email_addr}</td>`;
+            rowUMD.innerHTML = `<td>${cadet.student_id}</td><td>${cadet.class_year}</td><td>${cadet.cadet_rank}</td><td>${cadet.phone_num}</td><td>${cadet.email_addr}</td>`;
             UMDTable.appendChild(rowUMD);
         });
 

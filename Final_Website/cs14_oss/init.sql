@@ -1,7 +1,7 @@
 -- taking the easy way: use the default database: postgres
 CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
-    username VARCHAR(100) NOT NULL,
+    username VARCHAR(100) UNIQUE NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     hash CHAR(128) NOT NULL,
     salt CHAR(32) NOT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS users (
 select * from users;
 
  --Code From P2
-CREATE TABLE UMD (
+CREATE TABLE IF NOT EXISTS UMD (
     student_id VARCHAR(100) PRIMARY KEY,
     class_year SMALLINT,
     --Abbreviations: C/MSgt
@@ -21,7 +21,12 @@ CREATE TABLE UMD (
     name VARCHAR(40)
 );
 
-CREATE TABLE rooming(
+INSERT INTO UMD (student_id, class_year, cadet_rank, phone_num, email_addr, name) 
+VALUES(3000126376, 2026, 'C/MSgt', 7154032677, 'c26jack.west@afacademy.af.edu', 'Jack West');
+
+select * from umd;
+
+/*CREATE TABLE rooming(
     room_num VARCHAR(5);
     student_id INT
 )
