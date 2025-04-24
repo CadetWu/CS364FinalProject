@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS UMD (
 
 INSERT INTO UMD (student_id, class_year, cadet_rank, phone_num, email_addr, name) 
 VALUES(3000126376, 2026, 'C/MSgt', 7154032677, 'c26jack.west@afacademy.af.edu', 'Jack West');
+--VALUES(3000122112, 2026, 'C/MSgt', 5742158606, 'c26brendan.wu@afacademy.af.edu', 'Brendan Wu');
 
 select * from umd;
 
