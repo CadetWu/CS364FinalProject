@@ -57,7 +57,7 @@ async function truncate(event) {
     const jsonBody = JSON.stringify(rows_to_display);
 
     try {
-        const response = await fetch("/api/umd", {
+        const response = await fetch("/api/truncate", {
             credentials: "include",
             method: "POST",
             headers: { "Content-Type": "application/json" },

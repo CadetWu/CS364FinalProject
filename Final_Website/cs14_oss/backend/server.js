@@ -66,7 +66,7 @@ app.get("/umd", auth.ensureAdmin, async (req, res) => {
   // may not be pulling form data from json body right
   const { num_rows } = req.body;
   console.log("in GET /umd");
-  const result = await pool.query("SELECT student_id, class_year, cadet_rank, phone_num, email_addr, name FROM UMD LIMIT $1");
+  const result = await pool.query("SELECT student_id, class_year, cadet_rank, phone_num, email_addr, name FROM UMD");
   console.log(`GET /umd rows: ${result.rows}`);
   res.json(result.rows);
 });
@@ -82,6 +82,17 @@ app.get("/session", (req, res) => {
     } else {
         res.json({ loggedIn: false });
     }
+});
+
+// self created for truncate
+// For UMD table
+app.get("/truncate", auth.ensureAdmin, async (req, res) => {
+  // may not be pulling form data from json body right
+  const { num_rows } = req.body;
+  console.log("in GET /truncate");
+  const result = await pool.query("SELECT student_id, class_year, cadet_rank, phone_num, email_addr, name FROM UMD LIMIT $1");
+  console.log(`GET /truncate rows: ${result.rows}`);
+  res.json(result.rows);
 });
 
 app.listen(3000, () => console.log("Server running on port 3000"));
