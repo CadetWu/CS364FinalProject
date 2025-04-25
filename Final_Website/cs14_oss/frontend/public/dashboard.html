@@ -46,9 +46,9 @@
 
     <!--Allow Truncating and Inserting for UMD-->
     <h4>Truncate UMD Table</h4>
-    <form action="submit.html" method="GET">
-        <label for="name">Enter Num Rows You Want To See: </label>
-        <input type="int" id="name" name="name" required>
+    <form id="truncate-form" onsubmit="truncate(event)">
+        <label for="num_rows">Enter Num Rows You Want To See: </label>
+        <input type="text" id="num_rows" name="num_rows" required>
         <br>
         <button type="submit">Submit</button>
     </form>

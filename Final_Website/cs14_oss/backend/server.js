@@ -63,8 +63,10 @@ app.get("/users", auth.ensureAdmin, async (req, res) => {
 });
 // For UMD table
 app.get("/umd", auth.ensureAdmin, async (req, res) => {
+  // may not be pulling form data from json body right
+  const { num_rows } = req.body;
   console.log("in GET /umd");
-  const result = await pool.query("SELECT student_id, class_year, cadet_rank, phone_num, email_addr, name FROM UMD");
+  const result = await pool.query("SELECT student_id, class_year, cadet_rank, phone_num, email_addr, name FROM UMD LIMIT $1");
   console.log(`GET /umd rows: ${result.rows}`);
   res.json(result.rows);
 });
