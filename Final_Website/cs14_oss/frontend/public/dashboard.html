@@ -1,3 +1,7 @@
+<!-- Documentation: Used PerplexityAI to figure out how to not get the page to refresh from an onsubmit call.
+ Conversation link is:https://www.perplexity.ai/search/how-to-make-a-webpage-not-refr-uj.Mu7yDR5CIwv57CLpt2w -->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,30 +48,39 @@
     </div>
     <br>
 
+    <!--<h4>Display UMD</h4>
+    <form id="display-form" onsubmit="display(event)" >
+        <label for="display_num">Number of Rows to Display:</label>
+        <input type="text" id="display_num" name="display_num" required>
+        <br>
+        <button type="submit">Display UMD</button>
+    </form>
+    <br><br> -->
+
     <!--Allow Truncating and Inserting for UMD-->
     <h4>Truncate UMD Table</h4>
-    <form id="truncate-form" onsubmit="truncate(event)">
-        <label for="num_rows">Enter Num Rows You Want To See: </label>
-        <input type="text" id="num_rows" name="num_rows" required>
-        <br>
-        <button type="submit">Submit</button>
+    <form id="truncate-form" onsubmit="truncate(event); return false">
+        <button type="submit">Truncate</button>
     </form>
     <br><br>
     <h4>Insert UMD Table</h4> 
-    <form action="submit.html" method="GET">
-        <label for="name">Student ID</label>
-        <input type="text" id="name" name="name" required>
+    <form id="add_info-form" onsubmit="add_info(event); return false">
+        <label for="student_id">Student ID</label>
+        <input type="text" id="student_id" name="student_id" required>
         <br>
-        <label for="name">Class Year</label>
-        <input type="text" id="name" name="name" required>
+        <label for="class_year">Class Year</label>
+        <input type="text" id="class_year" name="class_year" required>
         <br>
-        <label for="name">Rank</label>
-        <input type="text" id="name" name="name" required>
+        <label for="rank">Rank</label>
+        <input type="text" id="rank" name="rank" required>
         <br>
-        <label for="name">Phone Number</label>
-        <input type="text" id="name" name="name" required>
+        <label for="phone_num">Phone Number</label>
+        <input type="text" id="phone_num" name="phone_num" required>
         <br>
-        <label for="name">USAFA Email Address</label>
+        <label for="email">USAFA Email Address</label>
+        <input type="text" id="email" name="email" required>
+        <br>
+        <label for="name">Cadet Name</label>
         <input type="text" id="name" name="name" required>
         <br>
         <button type="submit">Submit</button>

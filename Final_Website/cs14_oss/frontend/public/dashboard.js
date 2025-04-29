@@ -7,8 +7,8 @@ async function fetchAlls() {
     const users = await response.json();
 
         // self added
-    //const response1 = await fetch("/api/umd", { credentials: "include" });
-    //const UMD = await response1.json();
+    const response1 = await fetch("/api/umd", { credentials: "include" });
+    const UMD = await response1.json();
 
     if (response.ok) {
         // get HTML table (going to modify this)
@@ -16,8 +16,8 @@ async function fetchAlls() {
         userTable.innerHTML = ""; // clear the previous content of the table
 
         // Used for UMD 
-        //const UMDTable = document.getElementById("UMD_list");
-        //UMDTable.innerHTML = ""; // clear the previous content of the table
+        const UMDTable = document.getElementById("UMD_list");
+        UMDTable.innerHTML = ""; // clear the previous content of the table
 
         // for each user in result, create table row and append to table in 
         //Pulls for User
@@ -27,11 +27,11 @@ async function fetchAlls() {
             userTable.appendChild(row);
         });
         //Pulls for UMD
-        //UMD.forEach(cadet => {  
-            //const rowUMD = document.createElement("tr");
-            //rowUMD.innerHTML = `<td>${cadet.student_id}</td><td>${cadet.class_year}</td><td>${cadet.cadet_rank}</td><td>${cadet.phone_num}</td><td>${cadet.email_addr}</td>`;
-            //UMDTable.appendChild(rowUMD);
-        //});
+        UMD.forEach(cadet => {  
+            const rowUMD = document.createElement("tr");
+            rowUMD.innerHTML = `<td>${cadet.student_id}</td><td>${cadet.class_year}</td><td>${cadet.cadet_rank}</td><td>${cadet.phone_num}</td><td>${cadet.email_addr}</td>`;
+            UMDTable.appendChild(rowUMD);
+        });
 
     } else {
         alert("Unauthorized access! - remove this alert from dashboard.js (line:18) when 'done'"); // comment this out when confident
@@ -42,12 +42,12 @@ async function fetchAlls() {
 fetchAlls();
 
 // Self added
-async function truncate(event) {
+async function display(event) {
 
     console.log("here we are in dashboard.js");
     event.preventDefault(); // Prevent default form submission
 
-    const formData = new FormData(document.getElementById("truncate-form"));
+    const formData = new FormData(document.getElementById("display-form"));
 
     // different than other similar example
     const rows_to_display = {  
@@ -68,7 +68,7 @@ async function truncate(event) {
 
         if (response.ok) {
             // Show success alert
-            console.log("Truncate OK:");
+            console.log("display OK:");
              // Used for UMD 
             const UMDTable = document.getElementById("UMD_list");
             UMDTable.innerHTML = ""; // clear the previous content of the table
@@ -92,5 +92,64 @@ async function truncate(event) {
     }
 
 
+}
+
+async function truncate(event) {
+
+    const response = await fetch("/api/truncate", { credentials: "include" });
+    const users = await response.json();
+
+    if (response.ok) {
+
+        console.log("Truncate is successful");
+        fetchAlls();
+    }
+    else {
+        alert("An error occured with truncate"); // comment this out when confident
+        window.location.href = "/dashboard.html";
+    }
+
+}
+
+async function add_info(event) {
+    console.log("adding information to users");
+    event.preventDefault(); // Prevent default form submission
+
+    const formData = new FormData(document.getElementById("add_info-form"));
+
+    // different than other similar example
+    const new_cadet_info = {  
+        student_id : formData.get("student_id"),
+        class_year : formData.get("class_year"),
+        cadet_rank : formData.get("rank"),
+        phone_num : formData.get("phone_num"),
+        email_addr : formData.get("email"),
+        name : formData.get("name")
+    };
+
+    const jsonBody = JSON.stringify(new_cadet_info);
+
+    try {
+        const response = await fetch("/api/add_info", {
+            credentials: "include",
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: jsonBody // JSON.stringify(userData)
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            // Show success alert
+            console.log("add info OK:");
+            fetchAlls();
+        }
+    }
+    catch (error) {
+        console.error("... error in adding info");
+        console.error("Error during adding info:", error);
+        console.error(`jsonBody: ${jsonBody}`);
+        alert("An error occurred. Please try again.");
+    }
 }
 
