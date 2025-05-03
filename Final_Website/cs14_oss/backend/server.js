@@ -49,7 +49,7 @@ app.post("/register", async (req, res) => {
   } catch (error) {
     console.log("in catch block of server.js/register");
     console.log(error);
-    res.json({ success: false, message: 'Username or email already exists.' });
+    res.json({ success: false, message: 'Student ID or email already exists.' });
   }
 });
 
