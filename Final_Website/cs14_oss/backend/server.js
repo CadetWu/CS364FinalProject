@@ -63,23 +63,41 @@ app.get("/users", auth.ensureAdmin, async (req, res) => {
 });
 // self created for truncate
 // For UMD table
-app.get("/truncate", auth.ensureAdmin, async (req, res) => {
-  // may not be pulling form data from json body right
-  const { num_rows } = req.body;
-  console.log("in GET /truncate");
-  const result = await pool.query("SELECT student_id, class_year, cadet_rank, phone_num, email_addr, name FROM UMD LIMIT $1");
-  console.log(`GET /truncate rows: ${result.rows}`);
-  res.json(result.rows);
-});
-// For UMD table
 app.get("/umd", auth.ensureAdmin, async (req, res) => {
   // may not be pulling form data from json body right
-  const { num_rows } = req.body;
-  console.log("in GET /umd");
-  const result = await pool.query("SELECT student_id, class_year, cadet_rank, phone_num, email_addr, name FROM UMD");
-  console.log(`GET /umd rows: ${result.rows}`);
-  res.json(result.rows);
+    const { num_rows } = req.body;
+    console.log("in GET /umd");
+    const result = await pool.query("SELECT student_id, class_year, cadet_rank, phone_num, email_addr, name FROM UMD");
+    console.log(`GET /umd rows: ${result.rows}`);
+    res.json(result.rows);
 });
+
+//To get User UMD
+app.post("/userUMD", async (req,res) => {
+  const { student_id } = req.body;
+  console.log(student_id)
+  const query = "SELECT * FROM UMD WHERE student_id = $1";
+  const values = [student_id];
+  console.log(values);
+  try{
+    const result = await pool.query(query,values);
+    console.log(result);
+    res.json(result);
+  }
+  catch (error) {
+    console.log("in catch block of server.js/userUMD");
+    console.log(error);
+    res.json({ success: false, message: 'Not Querying' });
+  }
+});
+
+//To get User Rooming
+// app.get("/userRooming", async (req,res) => {
+//   const { room_num, student_id} = req.body;
+//   const result = await pool.query("SELECT room_num, student_id FROM UMD WHERE student_id = $1");
+//   res.json(results);
+// });
+
 
 app.get("/logout", (req, res) => {
   req.session.destroy();
@@ -92,6 +110,14 @@ app.get("/session", (req, res) => {
     } else {
         res.json({ loggedIn: false });
     }
+});
+
+app.get("/sessionForUser", (req, res) => {
+  if (req.session.user) {
+      res.json({ user: req.session.user });
+  } else {
+      res.json({ loggedIn: false });
+  }
 });
 
 // self created for truncate
