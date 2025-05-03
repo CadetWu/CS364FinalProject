@@ -37,13 +37,12 @@ VALUES
     (3000121010, 2028, 'C/Amn', '7195550110', 'c28amy.martinez@afacademy.af.edu', 'Amy Martinez');
 
 
-select * from umd;
+select * from UMD;
 
 CREATE TABLE rooming(
     room_num VARCHAR(5),
-    student_id INT
+    student_id VARCHAR(100)
 );
-
 INSERT INTO rooming(room_num, student_id)
 VALUES
     ('5G31', 3000126376), --Jack West
@@ -59,26 +58,27 @@ VALUES
     ('5G37', 3000121007), --Roberta
     ('5G37', 3000121008); --Lisa
 
+select * from rooming;
 
-CREATE TABLE CQ_shift(
-    cq_group ENUM('Alpha', 'Bravo', 'Charlie') NOT NULL,
-    student_id INT,
-    shift_date DATE,
-    shift_time TIME
-);
+-- CREATE TABLE CQ_shift(
+--     cq_group ENUM('Alpha', 'Bravo', 'Charlie') NOT NULL,
+--     student_id VARCHAR(100),
+--     shift_date DATE,
+--     shift_time TIME
+-- );
 
-INSERT INTO CQ_shift(cq_group, student_id, shift_date, shift_time)
-VALUES
-    ('Alpha', 3000122001, 2025-05-12, 1600),
-    ('Alpha', 3000122002, 2025-05-13, 1600),
-    ('Alpha', 3000122003, 2025-05-14, 1600),
-    ('Alpha', 3000122004, 2025-05-15, 1600),
-    ('Alpha', 3000122005, 2025-05-16, 1600),
-    ('Alpha', 3000122006, 2025-05-17, 1600),
-    ('Alpha', 3000122007, 2025-05-18, 1600);
+-- INSERT INTO CQ_shift(cq_group, student_id, shift_date, shift_time)
+-- VALUES
+--     ('Alpha', 3000122001, 2025-05-12, 1600),
+--     ('Alpha', 3000122002, 2025-05-13, 1600),
+--     ('Alpha', 3000122003, 2025-05-14, 1600),
+--     ('Alpha', 3000122004, 2025-05-15, 1600),
+--     ('Alpha', 3000122005, 2025-05-16, 1600),
+--     ('Alpha', 3000122006, 2025-05-17, 1600),
+--     ('Alpha', 3000122007, 2025-05-18, 1600);
 
 CREATE TABLE SAMI_grades(
-    student_id INT,
+    student_id VARCHAR(100),
     --In Percentage;
     SAMI_1 INT,
     SAMI_2 INT,
@@ -95,34 +95,37 @@ VALUES
     (3000121005, 100, 96, 100), --David
     (3000121009, 100, 96, 100), --Daniel
     (3000121004, 75, 68, 100), --Sarah
-    (3000121010, 75. 68, 100), --Amy
+    (3000121010, 75, 68, 100), --Amy
     (3000121007, 96, 96, 92), --Roberta
     (3000121008, 96, 96, 92); --Lisa
 
+select * from SAMI_grades;
 
 CREATE TABLE birthdays(
-    student_id INT;
-    birthday DATE;
-)
+    student_id VARCHAR(100),
+    birthday DATE
+);
 INSERT INTO birthdays (student_id,birthday)
 VALUES
-    (3000126376, 2003-11-10), --Jack West
-    (3000122112, 2004-11-15), --Brendan Wu
-    (3000121002, 2003-09-24), --Emily
-    (3000121006, 2003-12-18), --Jennifer
-    (3000121001, 2002-03-03), --John
-    (3000121003, 2005-01-18), --Michael
-    (3000121005, 2003-01-22), --David
-    (3000121009, 2003-08-07), --Daniel
-    (3000121004, 2006-04-28), --Sarah
-    (3000121010, 2005-09-14), --Amy
-    (3000121007, 2003-04-12), --Roberta
-    (3000121008, 2004-10-05); --Lisa
+    (3000126376, '2003-11-10'), --Jack West
+    (3000122112, '2004-11-15'), --Brendan Wu
+    (3000121002, '2003-09-24'), --Emily
+    (3000121006, '2003-12-18'), --Jennifer
+    (3000121001, '2002-03-03'), --John
+    (3000121003, '2005-01-18'), --Michael
+    (3000121005, '2003-01-22'), --David
+    (3000121009, '2003-08-07'), --Daniel
+    (3000121004, '2006-04-28'), --Sarah
+    (3000121010, '2005-09-14'), --Amy
+    (3000121007, '2003-04-12'), --Roberta
+    (3000121008, '2004-10-05'); --Lisa
+
+select * from birthdays;
 
 CREATE TABLE lunch_arrangement(
-    student_id INT;
-    table_id SMALLINT;
-)
+    student_id VARCHAR(100),
+    table_id SMALLINT
+);
 INSERT INTO lunch_arrangement (student_id,table_id)
 VALUES
     (3000126376, 1), --Jack West
@@ -138,19 +141,20 @@ VALUES
     (3000121007, 2), --Roberta
     (3000121008, 2); --Lisa
 
-CREATE TABLE AMI_grades(
-    student_id INT;
-    --In Percentage;
-    AMI_1 INT;
-    AMI_2 INT;
-    AMI_3 INT;
-    AMI_4 INT;
-    AMI_5 INT;
-    AMI_6 INT;
-    AMI_7 INT;
-)
+select * from lunch_arrangement;
 
-INSERT INTO SAMI_grades(student_id,AMI_1,AMI_2,AMI_3, AMI_4,AMI_5,AMI_6,AMI_7)
+CREATE TABLE AMI_grades(
+    student_id VARCHAR(100),
+    --In Percentage;
+    AMI_1 INT,
+    AMI_2 INT,
+    AMI_3 INT,
+    AMI_4 INT,
+    AMI_5 INT,
+    AMI_6 INT,
+    AMI_7 INT
+);
+INSERT INTO AMI_grades(student_id,AMI_1,AMI_2,AMI_3, AMI_4,AMI_5,AMI_6,AMI_7)
 VALUES
     (3000126376, 100, 100, 68, 88, 88, 86, 92), --Jack West
     (3000122112, 100, 100, 68, 88, 88, 86, 92), --Brendan Wu
@@ -161,19 +165,19 @@ VALUES
     (3000121005, 100, 96, 100, 88, 92, 96, 100), --David
     (3000121009, 100, 96, 100, 88, 92, 96, 100), --Daniel
     (3000121004, 75, 68, 100, 100, 88, 92, 96), --Sarah
-    (3000121010, 75. 68, 100, 100, 88, 92, 96), --Amy
+    (3000121010, 75, 68, 100, 100, 88, 92, 96), --Amy
     (3000121007, 96, 96, 92, 75, 100, 100, 20), --Roberta
     (3000121008, 96, 96, 92, 75, 100, 100, 20); --Lisa
 
+select * from AMI_grades;
 
 CREATE TABLE PAI_grades(
-    student_id INT;
+    student_id VARCHAR(100),
     --In Percentage;
-    PAI_1 INT;
-    PAI_2 INT;
-    PAI_3 INT;
-)
-
+    PAI_1 INT,
+    PAI_2 INT,
+    PAI_3 INT
+);
 INSERT INTO PAI_grades(student_id,PAI_1,PAI_2,PAI_3)
 VALUES
     (3000126376, 100, 100, 100), --Jack West
@@ -188,4 +192,6 @@ VALUES
     (3000121010, 100, 100, 100), --Amy
     (3000121007, 100, 100, 100), --Roberta
     (3000121008, 100, 100, 100); --Lisa
+
+select * from PAI_grades;
 
