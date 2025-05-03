@@ -1,5 +1,3 @@
-// self-designed for executing js for GPUser.html
-
 function showMessage() {
     alert("JavaScript is running in the browser!");
 }
