@@ -73,27 +73,9 @@ app.get("/umd", auth.ensureAdmin, async (req, res) => {
 });
 
 //To get User UMD
-// app.post("/userUMD", async (req,res) => {
-//   const { student_id } = req.body;
-//   console.log(student_id)
-//   const query = "SELECT * FROM UMD WHERE student_id = $1";
-//   const values = [student_id];
-//   console.log(values);
-//   try{
-//     const result = await pool.query(query,values);
-//     console.log(result);
-//     res.json(result);
-//   }
-//   catch (error) {
-//     console.log("in catch block of server.js/userUMD");
-//     console.log(error);
-//     res.json({ success: false, message: 'Not Querying' });
-//   }
-// });
-
 app.post("/userUMD", async (req,res) => {
     const { student_id } = req.body;
-    const query = 'SELECT * FROM umd WHERE student_id = $1';
+    const query = 'SELECT * FROM umd LEFT JOIN rooming ON umd.student_id = rooming.student_id WHERE umd.student_id = $1';
     const values = [student_id];
     try{
       const result = await pool.query(query,values);
@@ -105,7 +87,57 @@ app.post("/userUMD", async (req,res) => {
       console.log(error);
       res.json({ success: false, message: 'Not Querying' });
     }
-  });
+});
+//User's AMI Grades
+app.post("/userAMI", async (req,res) => {
+  const { student_id } = req.body;
+  const query = 'SELECT * FROM AMI_grades WHERE student_id = $1';
+  const values = [student_id];
+  try{
+    const result = await pool.query(query,values);
+    console.log(result.rows);
+    res.json(result.rows);
+  }
+  catch (error) {
+    console.log("in catch block of server.js/userUMD");
+    console.log(error);
+    res.json({ success: false, message: 'Not Querying' });
+  }
+});
+
+//User's SAMI
+app.post("/userSAMI", async (req,res) => {
+  const { student_id } = req.body;
+  const query = 'SELECT * FROM SAMI_grades WHERE student_id = $1';
+  const values = [student_id];
+  try{
+    const result = await pool.query(query,values);
+    console.log(result.rows);
+    res.json(result.rows);
+  }
+  catch (error) {
+    console.log("in catch block of server.js/userUMD");
+    console.log(error);
+    res.json({ success: false, message: 'Not Querying' });
+  }
+});
+
+//User's PAI
+app.post("/userPAI", async (req,res) => {
+  const { student_id } = req.body;
+  const query = 'SELECT * FROM PAI_grades WHERE student_id = $1';
+  const values = [student_id];
+  try{
+    const result = await pool.query(query,values);
+    console.log(result.rows);
+    res.json(result.rows);
+  }
+  catch (error) {
+    console.log("in catch block of server.js/userUMD");
+    console.log(error);
+    res.json({ success: false, message: 'Not Querying' });
+  }
+});
 
 
 //To get User Rooming

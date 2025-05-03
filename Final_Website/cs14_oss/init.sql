@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS UMD (
 INSERT INTO UMD (student_id, class_year, cadet_rank, phone_num, email_addr, name)
 VALUES
     (3000126376, 2026, 'C/MSgt', '7154032677', 'c26jack.west@afacademy.af.edu', 'Jack West'),
-    ('3000122112', 2026, 'C/MSgt', '5742158606', 'c26brendan.wu@afacademy.af.edu', 'Brendan Wu'),
+    (3000122112, 2026, 'C/MSgt', '5742158606', 'c26brendan.wu@afacademy.af.edu', 'Brendan Wu'),
     /*Fake Data Below */
     (3000121001, 2025, 'C/Capt', '7195550101', 'c25john.smith@afacademy.af.edu', 'John Smith'),
     (3000121002, 2026, 'C/TSgt', '7195550102', 'c26emily.johnson@afacademy.af.edu', 'Emily Johnson'),
@@ -60,6 +60,7 @@ VALUES
 
 select * from rooming;
 
+-- Temporarily Not using CQ Shift until everything else is sorted
 -- CREATE TABLE CQ_shift(
 --     cq_group ENUM('Alpha', 'Bravo', 'Charlie') NOT NULL,
 --     student_id VARCHAR(100),
@@ -81,6 +82,7 @@ CREATE TABLE birthdays(
     student_id VARCHAR(100),
     birthday DATE
 );
+
 INSERT INTO birthdays (student_id,birthday)
 VALUES
     (3000126376, '2003-11-10'), --Jack West
@@ -154,7 +156,7 @@ CREATE TABLE AMI_grades(
     AMI_6 INT,
     AMI_7 INT
 );
-INSERT INTO AMI_grades(student_id,AMI_1,AMI_2,AMI_3, AMI_4,AMI_5,AMI_6,AMI_7)
+INSERT INTO AMI_grades(student_id,AMI_1,AMI_2,AMI_3,AMI_4,AMI_5,AMI_6,AMI_7)
 VALUES
     (3000126376, 100, 100, 68, 88, 88, 86, 92), --Jack West
     (3000122112, 100, 100, 68, 88, 88, 86, 92), --Brendan Wu
