@@ -50,14 +50,14 @@ async function display(event) {
     const formData = new FormData(document.getElementById("display-form"));
 
     // different than other similar example
-    const rows_to_display = {  
-        num_rows : formData.get("num_rows")
+    const table_to_display = {  
+        table : formData.get("data_table_dropdown")
     };
 
-    const jsonBody = JSON.stringify(rows_to_display);
+    const jsonBody = JSON.stringify(table_to_display);
 
     try {
-        const response = await fetch("/api/truncate", {
+        const response = await fetch("/api/diplay_given_table", {
             credentials: "include",
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -152,4 +152,5 @@ async function add_info(event) {
         alert("An error occurred. Please try again.");
     }
 }
+
 

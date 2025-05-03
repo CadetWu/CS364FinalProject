@@ -87,7 +87,23 @@
         <br>
         <button type="submit">Submit</button>
     </form>
-
+    <br>
+    <!-- User can select what data they'd like to see -->
+    <h3>What Data Would You Like to See?</h3>
+    <form id="display-form" onsubmit="display()">
+      <label for="data_table_dropdown">Data:</label>
+      <select name="data_table_dropdown" placeholder="Table">
+        <option value="UMD">UMD</option>
+        <option value="SAMI_grades">SAMI Scores</option>
+        <option value="AMI_grades">AMI Scores</option>
+        <option value="PAI_grades">PAI Scores</option>
+        <option value="rooming">Rooming Arrangement</option>
+        <option value="lunch_arrangement">Lunch Info</option>
+        <option value="birthdays">Birthdays</option>
+      </select>
+      
+      <button class="btn btn-primary" type="submit" onsubmit="show_table()">Display Table</button>
+    </form>
     <br><br>
     <!--UMD Stuff-->
     <h2>UMD</h2>

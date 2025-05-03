@@ -61,16 +61,7 @@ app.get("/users", auth.ensureAdmin, async (req, res) => {
   console.log(`GET /users rows: ${result.rows}`);
   res.json(result.rows);
 });
-// self created for truncate
-// For UMD table
-app.get("/truncate", auth.ensureAdmin, async (req, res) => {
-  // may not be pulling form data from json body right
-  const { num_rows } = req.body;
-  console.log("in GET /truncate");
-  const result = await pool.query("SELECT student_id, class_year, cadet_rank, phone_num, email_addr, name FROM UMD LIMIT $1");
-  console.log(`GET /truncate rows: ${result.rows}`);
-  res.json(result.rows);
-});
+
 // For UMD table
 app.get("/umd", auth.ensureAdmin, async (req, res) => {
   // may not be pulling form data from json body right
@@ -123,6 +114,15 @@ app.post("/add_info", auth.ensureAdmin, async (req, res) => {
     console.log(error);
     res.json({ success: false, message: 'Info could not be added' });
   }
+
+});
+
+app.get("/display_given_table", async (req, res) => {
+  const { table } = req.body;
+  console.log("in GET /display_given_table");
+  const result = await pool.query("SELECT * from $1");
+  console.log(`GET /display_given_table rows: ${result.rows}`);
+  res.json(result.rows); 
 
 });
 
