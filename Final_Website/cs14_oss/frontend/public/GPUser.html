@@ -26,12 +26,25 @@
   <body>
     <h1 class="jumbotron">CS-14 One Stop Shop</h1>
 
-    <h3>Registered Data</h3>
+    <h3>What Data Would You Like to See?</h3>
+    <form id="display-table" onsubmit="select_table()">
+      <label for="data_table">Data:</label>
+      <select name="data_table" placeholder="Table">
+        <option value="UMD">UMD</option>
+        <option value="sami">SAMI Scores</option>
+        <option value="ami">AMI Scores</option>
+        <option value="pai">PAI Scores</option>
+        <option value="rooming">Rooming Arrangement</option>
+        <option value="lunch_arr">Lunch Info</option>
+      </select>
+      
+      <button class="btn btn-primary" type="submit" onsubmit="show_table()">Display Table</button>
+    </form>
     <div class="table-responsive">
       <table class="table">
 
+        <!-- This will be filled with the desired table in js -->
 
-        
       </table>
     </div>
     <!-- Start of the Old HTML (responsive tables) -->
