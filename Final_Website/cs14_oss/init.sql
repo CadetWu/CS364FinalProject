@@ -77,30 +77,6 @@ select * from rooming;
 --     ('Alpha', 3000122006, 2025-05-17, 1600),
 --     ('Alpha', 3000122007, 2025-05-18, 1600);
 
-CREATE TABLE SAMI_grades(
-    student_id VARCHAR(100),
-    --In Percentage;
-    SAMI_1 INT,
-    SAMI_2 INT,
-    SAMI_3 INT
-);
-INSERT INTO SAMI_grades(student_id,SAMI_1,SAMI_2,SAMI_3)
-VALUES
-    (3000126376, 100, 100, 68), --Jack West
-    (3000122112, 100, 100, 68), --Brendan Wu
-    (3000121002, 75, 100, 98), --Emily
-    (3000121006, 75, 100, 98), --Jennifer
-    (3000121001, 88, 92, 96), --John
-    (3000121003, 88, 92, 96), --Michael
-    (3000121005, 100, 96, 100), --David
-    (3000121009, 100, 96, 100), --Daniel
-    (3000121004, 75, 68, 100), --Sarah
-    (3000121010, 75, 68, 100), --Amy
-    (3000121007, 96, 96, 92), --Roberta
-    (3000121008, 96, 96, 92); --Lisa
-
-select * from SAMI_grades;
-
 CREATE TABLE birthdays(
     student_id VARCHAR(100),
     birthday DATE
@@ -142,6 +118,30 @@ VALUES
     (3000121008, 2); --Lisa
 
 select * from lunch_arrangement;
+
+CREATE TABLE SAMI_grades(
+    student_id VARCHAR(100),
+    --In Percentage;
+    SAMI_1 INT,
+    SAMI_2 INT,
+    SAMI_3 INT
+);
+INSERT INTO SAMI_grades(student_id,SAMI_1,SAMI_2,SAMI_3)
+VALUES
+    (3000126376, 100, 100, 68), --Jack West
+    (3000122112, 100, 100, 68), --Brendan Wu
+    (3000121002, 75, 100, 98), --Emily
+    (3000121006, 75, 100, 98), --Jennifer
+    (3000121001, 88, 92, 96), --John
+    (3000121003, 88, 92, 96), --Michael
+    (3000121005, 100, 96, 100), --David
+    (3000121009, 100, 96, 100), --Daniel
+    (3000121004, 75, 68, 100), --Sarah
+    (3000121010, 75, 68, 100), --Amy
+    (3000121007, 96, 96, 92), --Roberta
+    (3000121008, 96, 96, 92); --Lisa
+
+select * from SAMI_grades;
 
 CREATE TABLE AMI_grades(
     student_id VARCHAR(100),
