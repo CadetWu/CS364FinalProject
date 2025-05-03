@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS UMD (
 INSERT INTO UMD (student_id, class_year, cadet_rank, phone_num, email_addr, name)
 VALUES
     (3000126376, 2026, 'C/MSgt', '7154032677', 'c26jack.west@afacademy.af.edu', 'Jack West'),
-    (3000122112, 2026, 'C/MSgt', '5742158606', 'c26brendan.wu@afacademy.af.edu', 'Brendan Wu'),
+    ('3000122112', 2026, 'C/MSgt', '5742158606', 'c26brendan.wu@afacademy.af.edu', 'Brendan Wu'),
     /*Fake Data Below */
     (3000121001, 2025, 'C/Capt', '7195550101', 'c25john.smith@afacademy.af.edu', 'John Smith'),
     (3000121002, 2026, 'C/TSgt', '7195550102', 'c26emily.johnson@afacademy.af.edu', 'Emily Johnson'),
