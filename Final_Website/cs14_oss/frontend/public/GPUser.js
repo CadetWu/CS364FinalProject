@@ -18,7 +18,8 @@ async function fetchUserData() {
             body: userString
         })
     const userUMD = await response.json();
-
+    console.log("here is the result on the frontend!!!");
+    console.log(userUMD);
     if (response.ok) {
         // get HTML table (going to modify this)
         const userUMDRow = document.getElementById("userUMD");

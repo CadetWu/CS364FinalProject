@@ -81,8 +81,9 @@ app.post("/userUMD", async (req,res) => {
   console.log(values);
   try{
     const result = await pool.query(query,values);
-    console.log(result);
-    res.json(result);
+    console.log("Here is the result of the query!!!!");
+    console.log(result.rows);
+    res.json(result.rows);
   }
   catch (error) {
     console.log("in catch block of server.js/userUMD");
