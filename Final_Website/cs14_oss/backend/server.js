@@ -74,14 +74,27 @@ app.get("/umd", auth.ensureAdmin, async (req, res) => {
 
 //To get User UMD
 app.post("/userUMD", async (req,res) => {
+    const { student_id } = req.body;
+    const query = 'SELECT * FROM umd LEFT JOIN rooming ON umd.student_id = rooming.student_id WHERE umd.student_id = $1';
+    const values = [student_id];
+    try{
+      const result = await pool.query(query,values);
+      console.log(result.rows);
+      res.json(result.rows);
+    }
+    catch (error) {
+      console.log("in catch block of server.js/userUMD");
+      console.log(error);
+      res.json({ success: false, message: 'Not Querying' });
+    }
+});
+//User's AMI Grades
+app.post("/userAMI", async (req,res) => {
   const { student_id } = req.body;
-  console.log(student_id)
-  const query = "SELECT * FROM UMD WHERE student_id = $1";
+  const query = 'SELECT * FROM AMI_grades WHERE student_id = $1';
   const values = [student_id];
-  console.log(values);
   try{
     const result = await pool.query(query,values);
-    console.log("Here is the result of the query!!!!");
     console.log(result.rows);
     res.json(result.rows);
   }
@@ -91,6 +104,41 @@ app.post("/userUMD", async (req,res) => {
     res.json({ success: false, message: 'Not Querying' });
   }
 });
+
+//User's SAMI
+app.post("/userSAMI", async (req,res) => {
+  const { student_id } = req.body;
+  const query = 'SELECT * FROM SAMI_grades WHERE student_id = $1';
+  const values = [student_id];
+  try{
+    const result = await pool.query(query,values);
+    console.log(result.rows);
+    res.json(result.rows);
+  }
+  catch (error) {
+    console.log("in catch block of server.js/userUMD");
+    console.log(error);
+    res.json({ success: false, message: 'Not Querying' });
+  }
+});
+
+//User's PAI
+app.post("/userPAI", async (req,res) => {
+  const { student_id } = req.body;
+  const query = 'SELECT * FROM PAI_grades WHERE student_id = $1';
+  const values = [student_id];
+  try{
+    const result = await pool.query(query,values);
+    console.log(result.rows);
+    res.json(result.rows);
+  }
+  catch (error) {
+    console.log("in catch block of server.js/userUMD");
+    console.log(error);
+    res.json({ success: false, message: 'Not Querying' });
+  }
+});
+
 
 //To get User Rooming
 // app.get("/userRooming", async (req,res) => {
@@ -111,14 +159,6 @@ app.get("/session", (req, res) => {
     } else {
         res.json({ loggedIn: false });
     }
-});
-
-app.get("/sessionForUser", (req, res) => {
-  if (req.session.user) {
-      res.json({ user: req.session.user });
-  } else {
-      res.json({ loggedIn: false });
-  }
 });
 
 // self created for truncate
