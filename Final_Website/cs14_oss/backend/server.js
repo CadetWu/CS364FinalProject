@@ -174,7 +174,7 @@ app.post("/add_info", auth.ensureAdmin, async (req, res) => {
   console.log("in display");
   const { student_id, class_year, cadet_rank, phone_num, email_addr, name } = req.body;
 
-  const query = 'INSERT INTO UMD (student_id, class_year, cadet_rank, phone_num, email_addr, name) VALUES ($1, $2, $3, $4, $5, $6)'; // Correct way to have a variable in an SQL statement?
+  const query = 'INSERT INTO UMD (student_id, class_year, cadet_rank, phone_num, email_addr, name) VALUES ($1, $2, $3, $4, $5, $6)'; 
 
   const values = [student_id, class_year, cadet_rank, phone_num, email_addr, name];
   console.log("trying query with these values...");
@@ -193,12 +193,45 @@ app.post("/add_info", auth.ensureAdmin, async (req, res) => {
 
 });
 
-app.get("/display_given_table", async (req, res) => {
+app.post("/display_given_table", auth.ensureAdmin, async (req, res) => {
   const { table } = req.body;
   console.log("in GET /display_given_table");
-  const result = await pool.query("SELECT * from $1");
-  console.log(`GET /display_given_table rows: ${result.rows}`);
-  res.json(result.rows); 
+  console.log(table);
+  // table and validation if statement taken from PerPlexityAI
+  const allowedTables = ['UMD', 'AMI_grades', 'SAMI_grades', 'PAI_grades', 'rooming', 'lunch_arrangement', 'birthdays'];
+  
+  // Validate the table name (from PerplexityAI)
+  if (!allowedTables.includes(table)) {
+    return res.status(400).json({ success: false, message: 'Invalid table name' });
+  }
+
+  // Figure out what table was asked for
+  let query;
+  if (table == 'UMD') {
+    query = `SELECT * from ${table}`;
+    console.log("UMD table!!");
+  }
+  else {
+    query = `SELECT * from ${table} INNER JOIN umd ON umd.student_id = ${table}.student_id`;
+  }
+  //const value = [table]
+
+  //const query = `SELECT * from ${table}`;
+
+  try {
+    //const result = await pool.query(query, value);
+    const result = await pool.query(query);
+    //console.log("user NOW registered ... going to respond");
+    //console.log(result);
+    //res.json({ success: true, message: `table data gathered` });
+    res.json(result.rows);
+  } catch (error) {
+    console.log("in catch block of server.js/display_given_table");
+    console.log(error);
+    res.json({ success: false, message: 'Table data could not be gathered' });
+  }
+  //console.log(`GET /display_given_table rows: ${result.rows}`);
+  //res.json(result.rows); 
 
 });
 

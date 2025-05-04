@@ -7,8 +7,8 @@ async function fetchAlls() {
     const users = await response.json();
 
         // self added
-    const response1 = await fetch("/api/umd", { credentials: "include" });
-    const UMD = await response1.json();
+    //const response1 = await fetch("/api/umd", { credentials: "include" });
+    //const UMD = await response1.json();
 
     if (response.ok) {
         // get HTML table (going to modify this)
@@ -16,8 +16,10 @@ async function fetchAlls() {
         userTable.innerHTML = ""; // clear the previous content of the table
 
         // Used for UMD 
-        const UMDTable = document.getElementById("UMD_list");
-        UMDTable.innerHTML = ""; // clear the previous content of the table
+        //const UMDTable = document.getElementById("display-rows");
+        
+        //UMDTable.innerHTML = ""; // clear the previous content of the table
+
 
         // for each user in result, create table row and append to table in 
         //Pulls for User
@@ -27,11 +29,11 @@ async function fetchAlls() {
             userTable.appendChild(row);
         });
         //Pulls for UMD
-        UMD.forEach(cadet => {  
-            const rowUMD = document.createElement("tr");
-            rowUMD.innerHTML = `<td>${cadet.student_id}</td><td>${cadet.class_year}</td><td>${cadet.cadet_rank}</td><td>${cadet.phone_num}</td><td>${cadet.email_addr}</td>`;
-            UMDTable.appendChild(rowUMD);
-        });
+        //UMD.forEach(cadet => {  
+            //const rowUMD = document.createElement("tr");
+            //rowUMD.innerHTML = `<td>${cadet.student_id}</td><td>${cadet.class_year}</td><td>${cadet.cadet_rank}</td><td>${cadet.phone_num}</td><td>${cadet.email_addr}</td>`;
+            //UMDTable.appendChild(rowUMD);
+        //});
 
     } else {
         alert("Unauthorized access! - remove this alert from dashboard.js (line:18) when 'done'"); // comment this out when confident
@@ -42,10 +44,11 @@ async function fetchAlls() {
 fetchAlls();
 
 // Self added
+
 async function display(event) {
 
-    console.log("here we are in dashboard.js");
-    event.preventDefault(); // Prevent default form submission
+    console.log("here we are in display");
+   //event.preventDefault(); // Prevent default form submission
 
     const formData = new FormData(document.getElementById("display-form"));
 
@@ -57,7 +60,7 @@ async function display(event) {
     const jsonBody = JSON.stringify(table_to_display);
 
     try {
-        const response = await fetch("/api/diplay_given_table", {
+        const response = await fetch("/api/display_given_table", {
             credentials: "include",
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -65,28 +68,129 @@ async function display(event) {
         });
 
         const result = await response.json();
+        console.log(result)
+
+        // Check if tableRows is an array (from PerplexityAI)
+        if (Array.isArray(result)) {
+            console.log("tablerows.forEach should be good to use. result: ")
+            console.log(result)
+        } else {
+            console.error("Backend error:", result.message); // 
+        }
 
         if (response.ok) {
             // Show success alert
-            console.log("display OK:");
-             // Used for UMD 
-            const UMDTable = document.getElementById("UMD_list");
-            UMDTable.innerHTML = ""; // clear the previous content of the table
+            console.log("/display OK:");
+            // pull table headers from return json body
+            //const headers = result.length > 0 ? Object.keys(result[0]) : [];
+             // get table headers and rows
+            const tableHeaders = document.getElementById("display-headers");
+            tableHeaders.innerHTML = ""; // clear the previous content of the table
+            const tableRows = document.getElementById("display-rows");
+            tableRows.innerHTML = "";
 
-            //Pulls for UMD
-            UMD.forEach(cadet => {  
-                const rowUMD = document.createElement("tr");
-                rowUMD.innerHTML = `<td>${cadet.student_id}</td><td>${cadet.class_year}</td><td>${cadet.cadet_rank}</td><td>${cadet.phone_num}</td><td>${cadet.email_addr}</td>`;
-                UMDTable.appendChild(rowUMD);
-        });
+            // Series of If/then based on what table selected
+            const tablename = JSON.parse(jsonBody);
+            if (tablename.table == "UMD") {
+                
+                // hardcode headers into display-headers
+                const headerRow = document.createElement("tr");
+                tableHeaders.innerHTML = `<th>Name</th><th>Student ID</th><th>Class Year</th><th>Rank</th><th>Phone Number</th><th>USAFA Email Address</th>`;
+                tableHeaders.appendChild(headerRow);
+                
+                result.forEach(cadet => {  
+                const row = document.createElement("tr");
+                row.innerHTML = `<td>${cadet.name}</td><td>${cadet.student_id}</td><td>${cadet.class_year}</td><td>${cadet.cadet_rank}</td><td>${cadet.phone_num}</td><td>${cadet.email_addr}</td>`;
+                tableRows.appendChild(row);
+                });
+
+            }
+            else if (tablename.table == "SAMI_grades") {
+                 // hardcode headers into display-headers
+                const headerRow = document.createElement("tr");
+                tableHeaders.innerHTML = `<th>Name</th><th>Student ID</th><th>SAMI 1</th><th>SAMI 2</th><th>SAMI 3</th>`;
+                tableHeaders.appendChild(headerRow);
+                 
+                result.forEach(cadet => {  
+                const row = document.createElement("tr");
+                row.innerHTML = `<td>${cadet.name}<td>${cadet.student_id}</td><td>${cadet.sami_1}</td><td>${cadet.sami_2}</td><td>${cadet.sami_3}</td>`;
+                tableRows.appendChild(row);
+                });
+            }
+            else if (tablename.table == "AMI_grades") {
+                // hardcode headers into display-headers
+                const headerRow = document.createElement("tr");
+                tableHeaders.innerHTML = `<th>Name</th><th>Student ID</th><th>AMI 1</th><th>AMI 2</th><th>AMI 3</th><th>AMI 4</th><th>AMI 5</th><th>AMI 6</th><th>AMI 7</th>`;
+                tableHeaders.appendChild(headerRow);
+                
+                result.forEach(cadet => {  
+                const row = document.createElement("tr");
+                row.innerHTML = `<td>${cadet.name}</td><td>${cadet.student_id}</td><td>${cadet.ami_1}</td><td>${cadet.ami_2}</td><td>${cadet.ami_3}</td><td>${cadet.ami_4}</td><td>${cadet.ami_5}</td><td>${cadet.ami_6}</td><td>${cadet.ami_7}</td>`;
+                tableRows.appendChild(row);
+                });
+
+            }
+            else if (tablename.table == "PAI_grades") {
+                // hardcode headers into display-headers
+                const headerRow = document.createElement("tr");
+                tableHeaders.innerHTML = `<th>Name</th><th>Student ID</th><th>PAI 1</th><th>PAI 2</th><th>PAI 3</th>`;
+                tableHeaders.appendChild(headerRow);
+                
+                result.forEach(cadet => {  
+                const row = document.createElement("tr");
+                row.innerHTML = `<td>${cadet.name}</td><td>${cadet.student_id}</td><td>${cadet.pai_1}</td><td>${cadet.pai_2}</td><td>${cadet.pai_3}</td>`;
+                tableRows.appendChild(row);
+                });
+
+            }
+            else if (tablename.table == "rooming") {
+                // hardcode headers into display-headers
+                const headerRow = document.createElement("tr");
+                tableHeaders.innerHTML = `<th>Name</th><th>Student ID</th><th>Room Number</th>`;
+                tableHeaders.appendChild(headerRow);
+                
+                result.forEach(room => {  
+                const row = document.createElement("tr");
+                row.innerHTML = `<td>${room.name}</td><td>${room.student_id}</td><td>${room.room_num}</td>`;
+                tableRows.appendChild(row);
+                });
+
+            } 
+            else if (tablename.table == "lunch_arrangement") {
+                // hardcode headers into display-headers
+                const headerRow = document.createElement("tr");
+                tableHeaders.innerHTML = `<th>Name</th><th>Student ID</th><th>Table ID</th>`;
+                tableHeaders.appendChild(headerRow);
+                
+                result.forEach(cadet => {  
+                const row = document.createElement("tr");
+                row.innerHTML = `<td>${cadet.name}</td><td>${cadet.student_id}</td><td>${cadet.table_id}</td>`;
+                tableRows.appendChild(row);
+                });
+
+            }
+            else if (tablename.table == "birthdays") {
+                // hardcode headers into display-headers
+                const headerRow = document.createElement("tr");
+                tableHeaders.innerHTML = `<th>Name</th><th>Student ID</th><th>Birthday</th>`;
+                tableHeaders.appendChild(headerRow);
+                
+                result.forEach(cadet => {  
+                const row = document.createElement("tr");
+                row.innerHTML = `<td>${cadet.name}</td><td>${cadet.student_id}</td><td>${cadet.birthday}</td>`;
+                tableRows.appendChild(row);
+                });
+
+            }
+
         } else {
             // Show error alert if registration fails
-            console.log("Truncate not OK");
+            console.log("display not OK");
         }
 
     } catch (error) {
-        console.error("... error in truncate");
-        console.error("Error during truncate:", error);
+        console.error("... error in display_given_table");
+        console.error("Error during display_given_table:", error);
         console.error(`jsonBody: ${jsonBody}`);
         alert("An error occurred. Please try again.");
     }

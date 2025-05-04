@@ -1,7 +1,8 @@
 <!-- Documentation: Used PerplexityAI to figure out how to not get the page to refresh from an onsubmit call.
  Conversation link is:https://www.perplexity.ai/search/how-to-make-a-webpage-not-refr-uj.Mu7yDR5CIwv57CLpt2w 
  - C2C Josh Smith helped with my debugging and pointed out the difference of app.post and app.get, which
- helped me overcome some of the errors I was experiencing -->
+ helped me overcome some of the errors I was experiencing 
+ - Conversation link for debugging and error-checking: https://www.perplexity.ai/search/considering-these-three-files-cj__jE7ASS.I2NNrxDgn4g -->
 
 
 <!DOCTYPE html>
@@ -90,7 +91,7 @@
     <br>
     <!-- User can select what data they'd like to see -->
     <h3>What Data Would You Like to See?</h3>
-    <form id="display-form" onsubmit="display()">
+    <form id="display-form" onsubmit="display(); return false">
       <label for="data_table_dropdown">Data:</label>
       <select name="data_table_dropdown" placeholder="Table">
         <option value="UMD">UMD</option>
@@ -102,14 +103,14 @@
         <option value="birthdays">Birthdays</option>
       </select>
       
-      <button class="btn btn-primary" type="submit" onsubmit="show_table()">Display Table</button>
+      <button class="btn btn-primary" type="submit">Display Table</button>
     </form>
     <br><br>
     <!--UMD Stuff-->
-    <h2>UMD</h2>
+    <h2>Data</h2>
     <div class="table-responsive">
     <table class = "table", border="1">
-        <thead>
+        <thead id="display-headers">
             <tr>
                 <th>Student ID</th>
                 <th>Class Year</th>
@@ -118,7 +119,7 @@
                 <th>USAFA Email Address</th>
             </tr>
         </thead>
-        <tbody id="UMD_list"></tbody>
+        <tbody id="display-rows"></tbody>
     </table>
     </div>
 </body>
