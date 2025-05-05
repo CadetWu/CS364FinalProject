@@ -82,7 +82,6 @@ async function display(event) {
             // Show success alert
             console.log("/display OK:");
             // pull table headers from return json body
-            //const headers = result.length > 0 ? Object.keys(result[0]) : [];
              // get table headers and rows
             const tableHeaders = document.getElementById("display-headers");
             tableHeaders.innerHTML = ""; // clear the previous content of the table
@@ -216,22 +215,21 @@ async function truncate(event) {
 }
 
 async function add_info(event) {
-    console.log("adding information to users");
+    console.log("adding information to database");
     event.preventDefault(); // Prevent default form submission
 
     const formData = new FormData(document.getElementById("add_info-form"));
 
     // different than other similar example
-    const new_cadet_info = {  
-        student_id : formData.get("student_id"),
-        class_year : formData.get("class_year"),
-        cadet_rank : formData.get("rank"),
-        phone_num : formData.get("phone_num"),
-        email_addr : formData.get("email"),
-        name : formData.get("name")
+    const new_info = {  
+        
+        table : formData.get("data_table_dropdown"),
+        column : formData.get("table_column"),
+        new_data : formData.get("new_data"),
+        student_id : formData.get("student_id")
     };
 
-    const jsonBody = JSON.stringify(new_cadet_info);
+    const jsonBody = JSON.stringify(new_info);
 
     try {
         const response = await fetch("/api/add_info", {
@@ -246,7 +244,7 @@ async function add_info(event) {
         if (response.ok) {
             // Show success alert
             console.log("add info OK:");
-            fetchAlls();
+            alert(`the update has been completed`);
         }
     }
     catch (error) {

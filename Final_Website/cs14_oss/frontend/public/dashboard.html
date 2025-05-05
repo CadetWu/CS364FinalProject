@@ -2,7 +2,8 @@
  Conversation link is:https://www.perplexity.ai/search/how-to-make-a-webpage-not-refr-uj.Mu7yDR5CIwv57CLpt2w 
  - C2C Josh Smith helped with my debugging and pointed out the difference of app.post and app.get, which
  helped me overcome some of the errors I was experiencing 
- - Conversation link for debugging and error-checking: https://www.perplexity.ai/search/considering-these-three-files-cj__jE7ASS.I2NNrxDgn4g -->
+ - Conversation link for debugging and error-checking code I copied/pasted: https://www.perplexity.ai/search/considering-these-three-files-cj__jE7ASS.I2NNrxDgn4g
+ - Referenced https://www.w3schools.com/jsref/jsref_if.asp for how to use if/else statements in javascript-->
 
 
 <!DOCTYPE html>
@@ -61,20 +62,50 @@
     <br><br> -->
 
     <!--Allow Truncating and Inserting for UMD-->
-    <h4>Truncate UMD Table</h4>
-    <form id="truncate-form" onsubmit="truncate(event); return false">
-        <button type="submit">Truncate</button>
-    </form>
-    <br><br>
-    <h4>Insert UMD Table</h4> 
+
+    <h4>Update Information</h4> 
     <form id="add_info-form" onsubmit="add_info(event); return false">
         <label for="student_id">Student ID</label>
         <input type="text" id="student_id" name="student_id" required>
         <br>
-        <label for="class_year">Class Year</label>
-        <input type="text" id="class_year" name="class_year" required>
+        <label for="data_table_dropdown">Table:</label>
+      <select name="data_table_dropdown" placeholder="Table">
+        <option value="UMD">UMD</option>
+        <option value="SAMI_grades">SAMI Scores</option>
+        <option value="AMI_grades">AMI Scores</option>
+        <option value="PAI_grades">PAI Scores</option>
+        <option value="rooming">Rooming Arrangement</option>
+        <option value="lunch_arrangement">Lunch Info</option>
+        <option value="birthdays">Birthdays</option>
+      </select>
         <br>
-        <label for="rank">Rank</label>
+        <label for="table_column">Info to Change</label>
+      <select name="table_column">
+        <option value="cadet_rank">Rank</option>
+        <option value="phone_num">Phone Number</option>
+        <option value="email_addr">Email Address</option>
+        <option value="room_num">Room Number</option>
+        <option value="birthday">Birthday</option>
+        <option value="table_id">Table Number</option>
+        <option value="SAMI_1">SAMI #1 Grade</option>
+        <option value="SAMI_2">SAMI #2 Grade</option>
+        <option value="SAMI_3">SAMI #3 Grade</option>
+        <option value="AMI_1">AMI #1 Grade</option>
+        <option value="AMI_2">AMI #2 Grade</option>
+        <option value="AMI_3">AMI #3 Grade</option>
+        <option value="AMI_4">AMI #4 Grade</option>
+        <option value="AMI_5">AMI #5 Grade</option>
+        <option value="AMI_6">AMI #6 Grade</option>
+        <option value="AMI_7">AMI #7 Grade</option>
+        <option value="PAI_1">PAI #1 Grade</option>
+        <option value="PAI_2">PAI #2 Grade</option>
+        <option value="PAI_3">PAI #3 Grade</option>
+      </select>
+      <br>
+        <label for="new_data">New Data</label>
+        <input type="text" id="new_data" name="new_data" required>
+        <br>
+        <!-- <label for="rank">Rank</label>
         <input type="text" id="rank" name="rank" required>
         <br>
         <label for="phone_num">Phone Number</label>
@@ -84,11 +115,16 @@
         <input type="text" id="email" name="email" required>
         <br>
         <label for="name">Cadet Name</label>
-        <input type="text" id="name" name="name" required>
+        <input type="text" id="name" name="name" required> -->
         <br>
-        <button type="submit">Submit</button>
+        <button type="submit">Update Info</button>
     </form>
     <br>
+    <!-- Admin can search data for a specific person -->
+    <h3>Find a Cobra</h3>
+    <a class="btn btn-primary" href="GPAdmin.html">Search For A Cobra</a><br><br>
+
+
     <!-- User can select what data they'd like to see -->
     <h3>What Data Would You Like to See?</h3>
     <form id="display-form" onsubmit="display(); return false">

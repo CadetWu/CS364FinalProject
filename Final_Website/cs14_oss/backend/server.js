@@ -172,17 +172,17 @@ app.get("/truncate", auth.ensureAdmin, async (req, res) => {
 
 app.post("/add_info", auth.ensureAdmin, async (req, res) => {
   console.log("in display");
-  const { student_id, class_year, cadet_rank, phone_num, email_addr, name } = req.body;
+  const { table, column, new_data, student_id } = req.body;
 
-  const query = 'INSERT INTO UMD (student_id, class_year, cadet_rank, phone_num, email_addr, name) VALUES ($1, $2, $3, $4, $5, $6)'; 
+  const query = 'UPDATE $1 SET $2 = $3 WHERE student_id = $4'; 
 
-  const values = [student_id, class_year, cadet_rank, phone_num, email_addr, name];
+  const values = [ table, column, new_data, student_id];
   console.log("trying query with these values...");
   console.log(values);
 
   try {
     const result = await pool.query(query, values);
-    console.log("user NOW registered ... going to respond");
+    console.log("adding new information");
     console.log(result);
     res.json({ success: true, message: `info added` });
   } catch (error) {
@@ -197,7 +197,7 @@ app.post("/display_given_table", auth.ensureAdmin, async (req, res) => {
   const { table } = req.body;
   console.log("in GET /display_given_table");
   console.log(table);
-  // table and validation if statement taken from PerPlexityAI
+  // table and validation if statement taken from PerplexityAI
   const allowedTables = ['UMD', 'AMI_grades', 'SAMI_grades', 'PAI_grades', 'rooming', 'lunch_arrangement', 'birthdays'];
   
   // Validate the table name (from PerplexityAI)
@@ -234,5 +234,123 @@ app.post("/display_given_table", auth.ensureAdmin, async (req, res) => {
   //res.json(result.rows); 
 
 });
+
+
+// API calls for GPAdmin
+//To get User UMD
+app.post("/cobraUMD", async (req,res) => {
+  const { name } = req.body;
+  const query = 'SELECT * FROM umd LEFT JOIN rooming ON umd.student_id = rooming.student_id WHERE umd.name = $1';
+  const values = [name];
+  try{
+    const result = await pool.query(query,values);
+    console.log(result.rows);
+    res.json(result.rows);
+  }
+  catch (error) {
+    console.log("in catch block of server.js/cobraUMD");
+    console.log(error);
+    res.json({ success: false, message: 'Not Querying' });
+  }
+});
+
+//User's AMI Grades
+app.post("/cobraAMI", async (req,res) => {
+  const { name } = req.body;
+  const query = 'SELECT * FROM AMI_grades INNER JOIN umd ON umd.student_id = AMI_grades.student_id WHERE umd.name = $1';
+  const values = [name];
+  try{
+    const result = await pool.query(query,values);
+    console.log(result.rows);
+    res.json(result.rows);
+  }
+  catch (error) {
+    console.log("in catch block of server.js/cobraAMI");
+    console.log(error);
+    res.json({ success: false, message: 'Not Querying' });
+  }
+});
+
+//User's SAMI
+app.post("/cobraSAMI", async (req,res) => {
+  const { name } = req.body;
+  const query = 'SELECT * FROM SAMI_grades INNER JOIN umd ON umd.student_id = SAMI_grades.student_id WHERE umd.name = $1';
+  const values = [name];
+  try{
+    const result = await pool.query(query,values);
+    console.log(result.rows);
+    res.json(result.rows);
+  }
+  catch (error) {
+    console.log("in catch block of server.js/userUMD");
+    console.log(error);
+    res.json({ success: false, message: 'Not Querying' });
+  }
+});
+
+app.post("/cobraPAI", async (req,res) => {
+  const { name } = req.body;
+  const query = 'SELECT * FROM PAI_grades INNER JOIN umd ON PAI_grades.student_id = umd.student_id WHERE umd.name = $1';
+  const values = [name];
+  try{
+    const result = await pool.query(query,values);
+    console.log(result.rows);
+    res.json(result.rows);
+  }
+  catch (error) {
+    console.log("in catch block of server.js/userUMD");
+    console.log(error);
+    res.json({ success: false, message: 'Not Querying' });
+  }
+});
+
+app.post("/cobraRoom", async (req,res) => {
+  const { name } = req.body;
+  const query = 'SELECT * FROM rooming INNER JOIN umd ON rooming.student_id = umd.student_id WHERE umd.name = $1';
+  const values = [name];
+  try{
+    const result = await pool.query(query,values);
+    console.log(result.rows);
+    res.json(result.rows);
+  }
+  catch (error) {
+    console.log("in catch block of server.js/userUMD");
+    console.log(error);
+    res.json({ success: false, message: 'Not Querying' });
+  }
+});
+
+app.post("/cobraLunch", async (req,res) => {
+  const { name } = req.body;
+  const query = 'SELECT * FROM lunch_arrangement INNER JOIN umd ON lunch_arrangement.student_id = umd.student_id WHERE umd.name = $1';
+  const values = [name];
+  try{
+    const result = await pool.query(query,values);
+    console.log(result.rows);
+    res.json(result.rows);
+  }
+  catch (error) {
+    console.log("in catch block of server.js/userUMD");
+    console.log(error);
+    res.json({ success: false, message: 'Not Querying' });
+  }
+});
+
+app.post("/cobraBirth", async (req,res) => {
+  const { name } = req.body;
+  const query = 'SELECT * FROM birthdays INNER JOIN umd ON birthdays.student_id = umd.student_id WHERE umd.name = $1';
+  const values = [name];
+  try{
+    const result = await pool.query(query,values);
+    console.log(result.rows);
+    res.json(result.rows);
+  }
+  catch (error) {
+    console.log("in catch block of server.js/userUMD");
+    console.log(error);
+    res.json({ success: false, message: 'Not Querying' });
+  }
+});
+
 
 app.listen(3000, () => console.log("Server running on port 3000"));

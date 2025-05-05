@@ -1,0 +1,20 @@
+
+Documentation: 
+
+- Used PerplexityAI to figure out how to not get the page to refresh from an onsubmit call.
+Conversation link is:https://www.perplexity.ai/search/how-to-make-a-webpage-not-refr-uj.Mu7yDR5CIwv57CLpt2w
+
+ - C2C Josh Smith helped with my debugging and pointed out the difference of app.post and app.get, which
+ helped me overcome some of the errors I was experiencing 
+
+ - Used PerplexityAI to make multiple queries for debugging and design. In some instances, we directly input project files to be analyzed by the LLM.
+ Conversation links for debugging and error-checking code I copied/pasted: 
+ 
+ https://www.perplexity.ai/search/considering-these-three-files-cj__jE7ASS.I2NNrxDgn4g
+ https://www.perplexity.ai/search/take-the-resulting-json-data-f-E.iztryaTMGZY0jOtbOhwA
+
+
+
+ - Referenced https://www.w3schools.com/jsref/jsref_if.asp for how to use if/else statements in javascript
+
+ - Received nginx.conf code from C2C Casey Nixon, which allowed our login.css file to be linked to our HTML pages
