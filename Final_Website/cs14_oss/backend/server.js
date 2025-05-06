@@ -21,7 +21,7 @@ app.use(
   })
 );
 
-// app.post("/register", auth.register);
+
 app.post("/register", async (req, res) => {
 
   console.log("server.js: register ");
@@ -61,10 +61,10 @@ app.get("/users", auth.ensureAdmin, async (req, res) => {
   console.log(`GET /users rows: ${result.rows}`);
   res.json(result.rows);
 });
-// self created for truncate
+
 // For UMD table
 app.get("/umd", auth.ensureAdmin, async (req, res) => {
-  // may not be pulling form data from json body right
+
     const { num_rows } = req.body;
     console.log("in GET /umd");
     const result = await pool.query("SELECT student_id, class_year, cadet_rank, phone_num, email_addr, name FROM UMD");
@@ -140,13 +140,6 @@ app.post("/userPAI", async (req,res) => {
 });
 
 
-//To get User Rooming
-// app.get("/userRooming", async (req,res) => {
-//   const { room_num, student_id} = req.body;
-//   const result = await pool.query("SELECT room_num, student_id FROM UMD WHERE student_id = $1");
-//   res.json(results);
-// });
-
 
 app.get("/logout", (req, res) => {
   req.session.destroy();
@@ -174,9 +167,10 @@ app.post("/add_info", auth.ensureAdmin, async (req, res) => {
   console.log("in display");
   const { table, column, new_data, student_id } = req.body;
 
-  const query = 'UPDATE $1 SET $2 = $3 WHERE student_id = $4'; 
+  const query = `UPDATE ${table} SET ${column} = $1 WHERE student_id = $2`; 
+ 
 
-  const values = [ table, column, new_data, student_id];
+  const values = [new_data, student_id];
   console.log("trying query with these values...");
   console.log(values);
 
@@ -186,7 +180,7 @@ app.post("/add_info", auth.ensureAdmin, async (req, res) => {
     console.log(result);
     res.json({ success: true, message: `info added` });
   } catch (error) {
-    console.log("in catch block of server.js/register");
+    console.log("in catch block of server.js/add_info");
     console.log(error);
     res.json({ success: false, message: 'Info could not be added' });
   }
@@ -197,13 +191,7 @@ app.post("/display_given_table", auth.ensureAdmin, async (req, res) => {
   const { table } = req.body;
   console.log("in GET /display_given_table");
   console.log(table);
-  // table and validation if statement taken from PerplexityAI
-  const allowedTables = ['UMD', 'AMI_grades', 'SAMI_grades', 'PAI_grades', 'rooming', 'lunch_arrangement', 'birthdays'];
-  
-  // Validate the table name (from PerplexityAI)
-  if (!allowedTables.includes(table)) {
-    return res.status(400).json({ success: false, message: 'Invalid table name' });
-  }
+ 
 
   // Figure out what table was asked for
   let query;
@@ -214,24 +202,17 @@ app.post("/display_given_table", auth.ensureAdmin, async (req, res) => {
   else {
     query = `SELECT * from ${table} INNER JOIN umd ON umd.student_id = ${table}.student_id`;
   }
-  //const value = [table]
-
-  //const query = `SELECT * from ${table}`;
+ 
 
   try {
-    //const result = await pool.query(query, value);
     const result = await pool.query(query);
-    //console.log("user NOW registered ... going to respond");
-    //console.log(result);
-    //res.json({ success: true, message: `table data gathered` });
     res.json(result.rows);
   } catch (error) {
     console.log("in catch block of server.js/display_given_table");
     console.log(error);
     res.json({ success: false, message: 'Table data could not be gathered' });
   }
-  //console.log(`GET /display_given_table rows: ${result.rows}`);
-  //res.json(result.rows); 
+   
 
 });
 

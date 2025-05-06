@@ -7,13 +7,14 @@ Conversation link is:https://www.perplexity.ai/search/how-to-make-a-webpage-not-
  - C2C Josh Smith helped with my debugging and pointed out the difference of app.post and app.get, which
  helped me overcome some of the errors I was experiencing 
 
- - Used PerplexityAI to make multiple queries for debugging and design. In some instances, we directly input project files to be analyzed by the LLM.
- Conversation links for debugging and error-checking code I copied/pasted: 
+ - Used PerplexityAI to make multiple queries for debugging errors, checking syntax, and figuring out/improving functionality. 
+ In some instances, we directly input project files to be analyzed by the LLM.
+ Conversation links: 
  
  https://www.perplexity.ai/search/considering-these-three-files-cj__jE7ASS.I2NNrxDgn4g
  https://www.perplexity.ai/search/take-the-resulting-json-data-f-E.iztryaTMGZY0jOtbOhwA
 
-
+- Used Bootstrap to assist in page styling
 
  - Referenced https://www.w3schools.com/jsref/jsref_if.asp for how to use if/else statements in javascript
 

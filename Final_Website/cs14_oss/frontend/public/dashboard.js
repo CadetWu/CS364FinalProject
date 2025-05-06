@@ -6,20 +6,11 @@ async function fetchAlls() {
     const response = await fetch("/api/users", { credentials: "include" });
     const users = await response.json();
 
-        // self added
-    //const response1 = await fetch("/api/umd", { credentials: "include" });
-    //const UMD = await response1.json();
 
     if (response.ok) {
         // get HTML table (going to modify this)
         const userTable = document.getElementById("userList");
         userTable.innerHTML = ""; // clear the previous content of the table
-
-        // Used for UMD 
-        //const UMDTable = document.getElementById("display-rows");
-        
-        //UMDTable.innerHTML = ""; // clear the previous content of the table
-
 
         // for each user in result, create table row and append to table in 
         //Pulls for User
@@ -28,15 +19,9 @@ async function fetchAlls() {
             row.innerHTML = `<td>${user.username}</td><td>${user.email}</td><td>${user.role}</td>`;
             userTable.appendChild(row);
         });
-        //Pulls for UMD
-        //UMD.forEach(cadet => {  
-            //const rowUMD = document.createElement("tr");
-            //rowUMD.innerHTML = `<td>${cadet.student_id}</td><td>${cadet.class_year}</td><td>${cadet.cadet_rank}</td><td>${cadet.phone_num}</td><td>${cadet.email_addr}</td>`;
-            //UMDTable.appendChild(rowUMD);
-        //});
 
     } else {
-        alert("Unauthorized access! - remove this alert from dashboard.js (line:18) when 'done'"); // comment this out when confident
+        alert("Unauthorized access!");
         window.location.href = "/frontpage.html";
     }
 }
@@ -48,7 +33,7 @@ fetchAlls();
 async function display(event) {
 
     console.log("here we are in display");
-   //event.preventDefault(); // Prevent default form submission
+   
 
     const formData = new FormData(document.getElementById("display-form"));
 
@@ -70,13 +55,6 @@ async function display(event) {
         const result = await response.json();
         console.log(result)
 
-        // Check if tableRows is an array (from PerplexityAI)
-        if (Array.isArray(result)) {
-            console.log("tablerows.forEach should be good to use. result: ")
-            console.log(result)
-        } else {
-            console.error("Backend error:", result.message); // 
-        }
 
         if (response.ok) {
             // Show success alert
@@ -89,7 +67,7 @@ async function display(event) {
             tableRows.innerHTML = "";
 
             // Series of If/then based on what table selected
-            const tablename = JSON.parse(jsonBody);
+            const tablename = JSON.parse(jsonBody); // got JSON.parse() idea from PerplexityAI
             if (tablename.table == "UMD") {
                 
                 // hardcode headers into display-headers
@@ -208,7 +186,7 @@ async function truncate(event) {
         fetchAlls();
     }
     else {
-        alert("An error occured with truncate"); // comment this out when confident
+        alert("An error occured with truncate"); 
         window.location.href = "/dashboard.html";
     }
 

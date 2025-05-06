@@ -3,11 +3,6 @@
 // and udpate HTML table with user data
 
 async function fetchUserData() {
-    //const studentIDFetcher = await fetch("/api/session");
-    //const gotStudentID = await studentIDFetcher.json();
-    //const currentUser = {
-        //student_id: gotStudentID.user.username
-    //};
 
     const formData = new FormData(document.getElementById("find-cobra"));
 
@@ -37,7 +32,7 @@ async function fetchUserData() {
     const userAMI = await responseAMI.json();
 
     //Now Response will be use for SAMI
-        //Now Response will be used for AMI
+    
     const responseSAMI = await fetch("/api/cobraSAMI", 
         {
             method: "POST",
@@ -55,7 +50,7 @@ async function fetchUserData() {
         })
     const userPAI = await responsePAI.json();
 
-    //Now Response will be used for PAI
+    
     const responseRoom = await fetch("/api/cobraRoom", 
         {
             method: "POST",
@@ -81,18 +76,18 @@ async function fetchUserData() {
     const userBirth = await responseBirth.json();
 
     if (responseUMD.ok && responseAMI.ok) {
-        // get HTML for UMD table (going to modify this)
+        
         const userUMDRow = document.getElementById("userUMD");
         userUMDRow.innerHTML = ""; // clear the previous content of the table
 
-        // get HTML for AMI table (going to modify this)
+        
         const userAMIRow = document.getElementById("userAMI");
         userAMIRow.innerHTML = ""; // clear the previous content of the table
-        // get HTML for SAMI table (going to modify this)
+        
         const userSAMIRow = document.getElementById("userSAMI");
         userAMIRow.innerHTML = ""; // clear the previous content of the table
 
-        // get HTML for SAMI table (going to modify this)
+        
         const userPAIRow = document.getElementById("userPAI");
         userAMIRow.innerHTML = ""; // clear the previous content of the table
 
@@ -150,7 +145,7 @@ async function fetchUserData() {
 
 
     } else {
-        alert("Unauthorized access! - remove this alert from dashboard.js (line:18) when 'done'"); // comment this out when confident
+        alert("Unauthorized access!"); // comment this out when confident
         window.location.href = "/frontpage.html";
     }
 }
