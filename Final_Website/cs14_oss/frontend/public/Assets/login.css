@@ -2,34 +2,67 @@
 {
     text-align: center;
     font-weight: bold;
-    background-color: rgb(99, 180, 67);
-    color:black;
+    background-color: rgb(6, 54, 74);
+    color: whitesmoke;
 }
 
 body {
     text-align: center;
-    background-color: rgb(212, 209, 209);
+    background-color: rgb(87, 87, 87);
 }
 
+td {
+    color: whitesmoke;
+}
+
+th {
+    font-weight: bold;
+    color: whitesmoke;
+}
 h1 {
     font-weight: bold;
     color: black;
 }
-
 /* Used for Table Titles */
 h3 {
     text-size-adjust: 1em;
     text-align: center;
-    color: rgb(99, 180, 67);
+    color: whitesmoke;
 }
 
 h4 {
     text-size-adjust: 1em;
     text-align: center;
-    color: black;
+    color: whitesmoke;
 }
 
 label {
     font-weight: bold;
     font-size: larger;
+    color: whitesmoke
 }
+
+legend {
+    color: whitesmoke
+
+}
+
+.btn-custom {
+    background-color: rgb(6, 54, 74);
+    color: whitesmoke;
+    border-color: whitesmoke;
+    border-width: 2.5px;
+}
+
+.container {
+    position: relative;
+  }
+  
+.top-left-image {
+position: absolute;
+top: 0;
+left: 0;
+max-width: 11.55%;  /* ensures responsiveness */
+height: auto;
+}
+  

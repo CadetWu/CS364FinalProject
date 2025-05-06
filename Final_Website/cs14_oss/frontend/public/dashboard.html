@@ -35,9 +35,9 @@
 <body>
     <h1 class="jumbotron">Admin Dashboard</h1>
 
-    <p id="user-status">Checking login status...</p>
+    <h4 id="user-status">Checking login status...</h4>
     <!--Admin Stuff-->
-    <h2>Users</h2>
+    <h3>Users</h3>
     <div class="table-responsive">
     <table class = "table", border="1">
         <thead>
@@ -58,7 +58,7 @@
         <label for="student_id">Student ID</label>
         <input type="text" id="student_id" name="student_id" required>
         <br>
-        <label for="data_table_dropdown">Table:</label>
+        <label for="data_table_dropdown">Table</label>
       <select name="data_table_dropdown" placeholder="Table">
         <option value="UMD">UMD</option>
         <option value="SAMI_grades">SAMI Scores</option>
@@ -96,18 +96,18 @@
         <input type="text" id="new_data" name="new_data" required>
         <br>
         <br>
-        <button type="submit">Update Info</button>
+        <button class = "btn-custom" type="submit">Update Info</button>
     </form>
     <br>
     <!-- Admin can search data for a specific person -->
     <h3>Find a Cobra</h3>
-    <a class="btn btn-primary" href="GPAdmin.html">Search For A Cobra</a><br><br>
+    <a class="btn btn-custom" href="GPAdmin.html">Search For A Cobra</a><br><br>
 
 
     <!-- User can select what data they'd like to see -->
     <h3>What Data Would You Like to See?</h3>
     <form id="display-form" onsubmit="display(); return false">
-      <label for="data_table_dropdown">Data:</label>
+      <label for="data_table_dropdown">Data</label>
       <select name="data_table_dropdown" placeholder="Table">
         <option value="UMD">UMD</option>
         <option value="SAMI_grades">SAMI Scores</option>
@@ -118,11 +118,11 @@
         <option value="birthdays">Birthdays</option>
       </select>
       
-      <button class="btn btn-primary" type="submit">Display Table</button>
+      <button class="btn btn-custom" type="submit">Display Table</button>
     </form>
     <br><br>
     
-    <h2>Data</h2>
+    <h3>Data</h3>
     <div class="table-responsive">
     <table class = "table", border="1">
         <thead id="display-headers">
@@ -138,7 +138,8 @@
     </table>
     </div>
 </body>
-<a class="btn btn-primary" href="frontpage.html">Back to Frontpage</a><br><br>
+<a class="btn btn-custom" href="frontpage.html">Back to Frontpage</a><br><br>
+<img src="Assets/CS14Logo.jpg" alt="description" class="top-left-image">
 
 </html>
 
