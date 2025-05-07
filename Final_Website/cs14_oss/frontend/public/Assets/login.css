@@ -66,3 +66,7 @@ max-width: 11.7%;  /* ensures responsiveness */
 height: auto;
 }
   
+.self-image{
+    max-width: 26%;  /* ensures responsiveness */
+    height: auto; 
+}
