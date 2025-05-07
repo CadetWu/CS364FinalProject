@@ -1,9 +1,0 @@
-Documentation: 
-
-- Used PerplexityAI to figure out how to not get the page to refresh from an onsubmit call.
-Conversation link is:https://www.perplexity.ai/search/how-to-make-a-webpage-not-refr-uj.Mu7yDR5CIwv57CLpt2w 
-
-- Used PerplexityAI to debog a query and table printing error: https://www.perplexity.ai/search/take-the-resulting-json-data-f-E.iztryaTMGZY0jOtbOhwA
-
-- C2C Josh Smith helped with my debugging and pointed out the difference of app.post and app.get, which
-helped me overcome some of the errors I was experiencing

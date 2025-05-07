@@ -19,3 +19,5 @@ Conversation link is:https://www.perplexity.ai/search/how-to-make-a-webpage-not-
  - Referenced https://www.w3schools.com/jsref/jsref_if.asp for how to use if/else statements in javascript
 
  - Received nginx.conf code from C2C Casey Nixon, which allowed our login.css file to be linked to our HTML pages
+
+ - C2C Nathan Windell (CS-14 member) looked at our proposed page color schemes and made suggestions that led us to our final design
